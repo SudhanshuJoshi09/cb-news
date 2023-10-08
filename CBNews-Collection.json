@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "226b0af1-e66e-4d42-a527-41ef3e6977cf",
+		"name": "CBNews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19654429"
+	},
+	"item": [
+		{
+			"name": "Keyword-Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keywords\": [\n        \"elon musk\",\n        \"alphabet\",\n        \"youtube\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/search/articles/keywords/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"search",
+						"articles",
+						"keywords",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get - N articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/search/articles/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"search",
+						"articles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query for title or author",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"keywords\": [\n        \"elon musk\",\n        \"alphabet\",\n        \"youtube\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/search/articles/query/\"Bill Gates: 'Republicans for climate change action are gold'\"",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"search",
+						"articles",
+						"query",
+						"\"Bill Gates: 'Republicans for climate change action are gold'\""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  redis-stack:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    networks:
+      - cbnews-network
+
+  cbnews:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    command: ["./wait-for-it.sh", "redis-stack:6379", "--", "npm", "start"]
+    environment:
+      - REDIS_HOST=redis-stack
+      - REDIS_PORT=6379
+      - REDIS_USER=default
+      - REDIS_PASS=mypassword
+      - CACHE_TIMEOUT=1440
+      - API_KEY=21f35127500790de57ef4bd13c61416f
+    # env_file:
+    #  - .env
+    networks:
+      - cbnews-network
+
+networks:
+  cbnews-network:
